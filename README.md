@@ -2,16 +2,32 @@
 
 Time: 2 hours
 
+## Theme
+We'll use the images API from NASA https://images-api.nasa.gov
+Our end result would be wrapping this api in a GraphQL API so that
+- We can have self-documenting schema
+- We can hover over hrefs and see the images
+
 Topics to cover (9):
-- modules (basic import of a func from one module into main, examplain the dir structure of app)
-- multi-returns (including errors)
-- methods on structs, pointers (auto de-referencing)
-- Interfaces (possibly in context of tests?)
-- Routing And Muxing
-- HTTP Handlers
+- Modules (basic import of a func from one module into main, examplain the dir structure of app)
+  - Create a "models" package with a SearchResult struct
 - Embedding And Composition (maybe within context of nested structs for JSON?)
-- configs (viper)
-- graphql
+  - Embed a Link in a SearchResult struct
+  - Add JSON serializing annotations (test with fmt.Println)
+- Methods on structs, pointers (auto de-referencing)
+  - Create a fetcher with a Fetch method, using a constructor pattern
+- Multi-returns (including errors)
+  - Make the fetcher return a search results and error
+- Interfaces (possibly in context of tests?)
+  - Given X (struct) takes a Y (interface), test X with a MockY instead of a RealY
+  - Test that we do and don't return errors when we expect
+- Routing And Muxing
+  - Initially return from REST (to test JSON serialization)
+- HTTP Handlers
+  - Create a basic status handler
+- GraphQL
+- Configs (viper)
+  - Add an API key for the NASA API
 
 ## Notes
 Each numbered step dir could contain:
