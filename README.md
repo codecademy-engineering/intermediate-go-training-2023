@@ -3,12 +3,14 @@
 Time: 2 hours
 
 ## Theme
-We'll use the images API from NASA https://images-api.nasa.gov
+We'll use the images API from NASA https://images-api.nasa.gov/search?q=
 Our end result would be wrapping this api in a GraphQL API so that
 - We can have self-documenting schema
 - We can hover over hrefs and see the images
 
 Topics to cover (9):
+- Initialize project via `go mod init <repo>`
+- Create a basic http server that returns a marshled struct
 - Modules (basic import of a func from one module into main, examplain the dir structure of app)
   - Create a "models" package with a SearchResult struct
 - Embedding And Composition (maybe within context of nested structs for JSON?)
