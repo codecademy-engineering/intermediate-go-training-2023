@@ -1,0 +1,72 @@
+[
+  {
+    "Squirrel_ID": "A-01-10",
+    "Fur_Color": {
+      "Primary": "Gray",
+      "Highlights": "White"
+    },
+    "Park": "Fort Tryon Park",
+    "Interactions With Humans": "Indifferent",
+    "Activities": ["Eating", "Digging"],
+    "Coordinates": {
+      "Lat": 40.859636,
+      "Lng": -73.933717
+    }
+  },
+  {
+    "Squirrel_ID": "A-02-08",
+    "Fur_Color": {
+      "Primary": "Gray",
+      "Highlights": "Cinnamon"
+    },
+    "Park": "J. Hood Wright Park",
+    "Interactions With Humans": "Indifferent",
+    "Activities": ["Foraging", "Nesting/gathering leaves"],
+    "Coordinates": {
+      "Lat": 40.859636,
+      "Lng": -73.933717
+    }
+  },
+  {
+    "Squirrel_ID": "A-04-05",
+    "Fur_Color": {
+      "Primary": "Gray",
+      "Highlights": "White"
+    },
+    "Park": "St. Nicholas Park",
+    "Interactions With Humans": "Indifferent",
+    "Activities": ["Climbing", "Eating"],
+    "Coordinates": {
+      "Lat": 40.817569,
+      "Lng": -73.948931
+    }
+  },
+  {
+    "Squirrel_ID": "B-07-08",
+    "Fur_Color": {
+      "Primary": "Gray",
+      "Highlights": "Cinnamon"
+    },
+    "Park": "Madison Square Park",
+    "Interactions With Humans": "Indifferent",
+    "Activities": ["Foraging"],
+    "Coordinates": {
+      "Lat": 40.742807,
+      "Lng": -73.988435
+    }
+  },
+  {
+    "Squirrel_ID": "D-22-02",
+    "Fur_Color": {
+      "Primary": "Gray",
+      "Highlights": "White"
+    },
+    "Park": "McCarren Park",
+    "Interactions With Humans": "Approaches",
+    "Activities": ["Eating"],
+    "Coordinates": {
+      "Lat": 40.721768,
+      "Lng": -73.953192
+    }
+  }
+]
