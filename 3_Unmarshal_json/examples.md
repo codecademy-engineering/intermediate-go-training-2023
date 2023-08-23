@@ -4,5 +4,5 @@ type ExampleStruct struct {
   MyNumber int
 }
 myStructInstance := ExampleStruct{MyNumber: 5}
-json.Unmarshall()
+json.Unmarshall(&myStructInstance)
 ```

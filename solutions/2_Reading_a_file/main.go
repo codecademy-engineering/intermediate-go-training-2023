@@ -11,7 +11,7 @@ type StatusResponse struct {
 }
 
 func handleRoot(w http.ResponseWriter, r *http.Request) {
-	fileContents, err := os.ReadFile("/greeting.txt")
+	fileContents, err := os.ReadFile("./greeting.txt")
 	status := StatusResponse{Status: string(fileContents)}
 
 	json, err := json.Marshal(status)
