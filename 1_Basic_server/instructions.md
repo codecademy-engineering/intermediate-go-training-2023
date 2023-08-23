@@ -1,0 +1,42 @@
+
+# Your assignment (should you choose to accept it)
+
+Create a main.go file at the root of this repository.
+
+Copy the template below into that main.go file.
+
+Fill out the template in order to create a server that returns json containing
+a key of "status", a value of "I'm a teapot", and a status code set to 418.
+
+## Template
+```go
+// declare a package
+
+// import dependencies
+
+// define a struct
+
+func handleRoot(w http.ResponseWriter, r *http.Request) {
+	// create an instance of your struct
+
+	// unmarshall the struct instance into a string
+
+	// handle if err is not nil (using panic() is fine)
+
+	// set the "Content-Type" header
+
+	// write the response code
+
+	// write the response body
+}
+
+func main() {
+	// instantiate a mux
+
+	// attach handleRoot to the "/" path
+	
+	// start the server on localhost:4321
+}
+```
+
+
