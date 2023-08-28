@@ -22,7 +22,8 @@ targetInstance := SomeStruct{}
 finalStruct, err := json.Unmarshal(rawData, &targetInstance)
 ```
 
-Structs can be nested and their json aliases
+Structs can be nested
+and fields can have json aliases when converting to/from structs
 
 ```go
 type author struct {

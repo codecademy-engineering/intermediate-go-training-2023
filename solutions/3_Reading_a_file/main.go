@@ -2,26 +2,13 @@ package main
 
 import (
 	"encoding/json"
-	"net/http"
 	"os"
+
+	"github.com/gin-gonic/gin"
 )
 
 type StatusResponse struct {
 	Status string `json:"status"`
-}
-
-func handleRoot(w http.ResponseWriter, r *http.Request) {
-	fileContents, err := os.ReadFile("./greeting.txt")
-	status := StatusResponse{Status: string(fileContents)}
-
-	json, err := json.Marshal(status)
-	if err != nil {
-		panic("couldn't marshal")
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(418)
-	w.Write([]byte(json))
 }
 
 type furColor struct {
@@ -43,44 +30,30 @@ type SquirrelSighting struct {
 	Coorditantes           coordinates
 }
 
-func handleSquirrels(w http.ResponseWriter, r *http.Request) {
-	fileContents, err := os.ReadFile("../../static/data.json")
-	if err != nil {
-		panic(err)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(fileContents)
+func handleRoot(c *gin.Context) {
+	status := StatusResponse{Status: "I'm a teapot 🫖"}
+	c.JSON(418, status)
 }
 
-func handleSquirrelByID(w http.ResponseWriter, r *http.Request) {
+func handleSquirrels(c *gin.Context) {
 	fileContents, err := os.ReadFile("../../static/data.json")
 	if err != nil {
 		panic(err)
 	}
-	list := []SquirrelSighting{}
-	err = json.Unmarshal(fileContents, list)
+
+	sightings := []SquirrelSighting{}
+	err = json.Unmarshal(fileContents, &sightings)
 	if err != nil {
 		panic(err)
 	}
 
-	first := list[0]
-	resp, err := json.Marshal(first)
-	if err != nil {
-		panic(err)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(resp)
+	c.JSON(200, sightings)
 }
 
 func main() {
-	mux := http.NewServeMux()
-	mux.Handle("/", http.HandlerFunc(handleRoot))
-	mux.Handle("/squirrels", http.HandlerFunc(handleSquirrels))
-	// TODO: we can't handle this in standard lib alone:
-	// maybe we switch to using gin framework?
-	mux.Handle("/squirrels/:id", http.HandlerFunc(handleSquirrels))
+	r := gin.Default()
+	r.GET("/", handleRoot)
+	r.GET("/squirrels", handleSquirrels)
 
-	http.ListenAndServe("localhost:4321", mux)
+	r.Run("localhost:4321")
 }
