@@ -1,10 +1,16 @@
 # Methods on Structs
 
+A `method` in golang is a special function that is attached to a struct instance.
+
+Methods are most commonly 'pointer receivers' meaning they can directly access shared, internal data on the struct instance they belong to.
+
 ```go
 type StructWithAbilities struct {
 	data []int
 }
 
+// pointer receiver denoted here by the *...
+// 's' inside this method will refer to the specific instance of StructWithAbilities rather than a copy of the data.
 func (s *StructWithAbilities) GetData() []int {
 	return s.data
 }
@@ -36,4 +42,3 @@ func NewSomeStruct(a string, b boolean) *SomeStruct {
 	}
 }
 ```
-
