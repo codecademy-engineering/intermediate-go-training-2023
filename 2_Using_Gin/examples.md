@@ -1,9 +1,15 @@
+# Go mod file
+
+Think of this like `package.json`.
+
 Initializing a new go mod for your project is done with the `go mod init` command.
 Run this at the root level of your repo:
 
 ```bash
 go mod init github.com/codecademy-engineering/intermediate-go-training-2023
 ```
+
+# Installing 3rd party dependencies
 
 Adding a dependency to your project is done via the terminal.
 Run the following at the root of your project.
@@ -25,7 +31,7 @@ r := gin.Default()
 Handler funcs for Gin look slightly different.
 They take a pointer to gin 'Context' which is a simplified way of using the ResponseWriter and request pointer from standard lib.
 
-Gin context includes convenient helpers such as automatically marshalling your structs to JSON with proper response code and Content-Type headers included:
+Gin context includes convenient helpers such as `c.JSON` which makes rendering JSON responses very simple.
 
 ```go
 func myHandler(c *gin.Context) {

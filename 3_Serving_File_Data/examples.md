@@ -1,10 +1,10 @@
-Reading a file (always raw bytes)
+# Reading a file
 
 ```go
 rawBytes, err := os.ReadFile("./path/to/file.whatever")
 ```
 
-Unmarshalling JSON (slice of bytes in JSON -> go struct)
+# Unmarshalling JSON (slice of bytes in JSON -> go struct)
 
 Note: fields MUST be uppercased for the unmarshalling
 

@@ -1,4 +1,3 @@
-
 # Your assignment (should you choose to accept it)
 
 Create a main.go file at the root of this repository.
@@ -6,9 +5,10 @@ Create a main.go file at the root of this repository.
 Copy the template below into that main.go file.
 
 Fill out the template in order to create a server that returns json containing
-a key of "status", a value of "I'm a teapot", and a status code set to 418.
+a key of "Status" (note the capital 'S' letter), a value of "I'm a teapot", and a status code set to 418.
 
 ## Template
+
 ```go
 // declare a package
 
@@ -34,9 +34,7 @@ func main() {
 	// instantiate a mux
 
 	// attach handleRoot to the "/" path
-	
+
 	// start the server on localhost:4321
 }
 ```
-
-

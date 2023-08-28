@@ -1,16 +1,56 @@
-Creating a struct
+# Creating a struct
+
 ```go
 type MyStruct struct {
-  MyProp string `json:"What this will be when serialized"`
-} 
+  MyProp string
+}
 ```
 
-Instantiating a struct
+# Instantiating a struct
+
 ```go
 myInstance := MyStruct{ MyProp: "some text" }
 ```
 
-JSON Marshalling (struct instance -> JSON string)
+# Multiple return values
+
+It is very common in golang to receive 2+ return values from a function.
+
+The last value will often be of type `error` and will either be:
+A) some error instance if there was a problem
+B) `nil` if everything was successful
+
+By convention, the variable name developers tend to choose for the error return is `err`.
+
+```go
+val, err := someFunc()
+```
+
+You are always guaranteed that a function will return the same number of values and in the same order as stated in its function signature.
+
+# Error handling
+
+There is no try/catch in golang.
+
+Instead, you must leverage the multiple returns and check the error value yourself.
+
+```go
+someVal, err := myFunc()
+if err != nil {
+	// handle the error
+}
+```
+
+Panic! (not for production)
+It will print the error or message passed to it and end the program immediately.
+Useful for quick prototyping.
+
+```go
+panic("Something has gone very wrong...halt all the things")
+```
+
+# JSON Marshalling (struct instance -> JSON string)
+
 ```go
 jsonString, err := json.Marshal(myInstance)
 if err != nil {
@@ -18,41 +58,41 @@ if err != nil {
 }
 ```
 
-Creating a Mux (let's be honest, it's a Router)
+# Creating a Mux (let's be honest, it's a Router)
+
 ```go
 mux := http.NewServeMux()
 ```
 
-Create a route handler func
+# Creating a route handler func
+
 ```go
 func handleRoute(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello client! From, server"))
 }
 ```
 
-Set a status code (will be 200 if not set)
+# Setting a status code (will be 200 if not set)
+
 ```go
-w.WriteHeader(500) // w is an http.ResponseWriter 
+w.WriteHeader(500) // w is an http.ResponseWriter
 ```
 
-Set response content type
+# Setting response content type
+
 ```go
-// w is an http.ResponseWriter 
+// w is an http.ResponseWriter
 w.Header().Set("Content-Type", "application/json")
 ```
 
-Attach the handler to the mux
+# Attaching the handler to the mux
+
 ```go
 mux.Handle("/sayHello", http.HandlerFunc(handleRoute))
 ```
 
-Start the server
+# Starting the server
+
 ```go
 http.ListenAndServe("localhost:3000", mux)
-```
-
-Panic! (not for production)
-It will print the error or message passed to it and end the program immediately.
-```go
-panic("Something has gone very wrong...halt all the things")
 ```
