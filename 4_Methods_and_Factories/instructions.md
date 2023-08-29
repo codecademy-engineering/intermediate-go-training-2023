@@ -4,6 +4,6 @@
 
 2. Write a factory func that takes in the successfully unmarshalled data and uses it to initialize a `SquirrelHandler` struct.
 
-This handler struct should have a method called `All` which accesses the in-memory squirrel data housed in the struct in order to return the same JSON response as the original gin handler func you wrote previously.
+This handler struct should have a method called `GetAll` which accesses the in-memory squirrel data housed in the struct in order to return the same JSON response as the original gin handler func you wrote previously.
 
 3. Replace your original handler func on the `/squirrels` route with a call to your new handler struct method instead.

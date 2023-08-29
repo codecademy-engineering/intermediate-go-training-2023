@@ -39,7 +39,7 @@ type SquirrelHandler struct {
 	data []SquirrelSighting
 }
 
-func (h *SquirrelHandler) All(c *gin.Context) {
+func (h *SquirrelHandler) GetAll(c *gin.Context) {
 	c.JSON(200, h.data)
 }
 
