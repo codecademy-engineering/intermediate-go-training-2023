@@ -1,6 +1,6 @@
 [
   {
-    "Squirrel_ID": "A-01-10",
+    "ID": "A-01-10",
     "Fur_Color": {
       "Primary": "Gray",
       "Highlights": "White"
@@ -14,7 +14,7 @@
     }
   },
   {
-    "Squirrel_ID": "A-02-08",
+    "ID": "A-02-08",
     "Fur_Color": {
       "Primary": "Gray",
       "Highlights": "Cinnamon"
@@ -28,7 +28,7 @@
     }
   },
   {
-    "Squirrel_ID": "A-04-05",
+    "ID": "A-04-05",
     "Fur_Color": {
       "Primary": "Gray",
       "Highlights": "White"
@@ -42,7 +42,7 @@
     }
   },
   {
-    "Squirrel_ID": "B-07-08",
+    "ID": "B-07-08",
     "Fur_Color": {
       "Primary": "Gray",
       "Highlights": "Cinnamon"
@@ -56,7 +56,7 @@
     }
   },
   {
-    "Squirrel_ID": "D-22-02",
+    "ID": "D-22-02",
     "Fur_Color": {
       "Primary": "Gray",
       "Highlights": "White"

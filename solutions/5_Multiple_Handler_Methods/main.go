@@ -1,28 +1,92 @@
-/*
-Have 2 endpoints?
-- all squirrels
-- squirrels by id
+package main
 
-- read file once
+import (
+	"encoding/json"
+	"os"
 
-*/
-//func handleSquirrelByID(w http.ResponseWriter, r *http.Request) {
-//	fileContents, err := os.ReadFile("../../static/data.json")
-//	if err != nil {
-//		panic(err)
-//	}
-//	list := []SquirrelSighting{}
-//	err = json.Unmarshal(fileContents, list)
-//	if err != nil {
-//		panic(err)
-//	}
-//
-//	first := list[0]
-//	resp, err := json.Marshal(first)
-//	if err != nil {
-//		panic(err)
-//	}
-//
-//	w.Header().Set("Content-Type", "application/json")
-//	w.Write(resp)
-//}
+	"github.com/gin-gonic/gin"
+)
+
+type StatusResponse struct {
+	Status string `json:"status"`
+}
+
+type furColor struct {
+	Primary    string
+	Highlights string
+}
+
+type coordinates struct {
+	Lat float64
+	Lng float64
+}
+
+type Squirrel struct {
+	ID                     string   `json:"ID"`
+	FurColor               furColor `json:"Fur_Color"`
+	Park                   string
+	InteractionsWithHumans string `json:"Interactions_With_Humans"`
+	Activities             []string
+	Coorditantes           coordinates
+}
+
+func handleRoot(c *gin.Context) {
+	status := StatusResponse{Status: "I'm a teapot 🫖"}
+	c.JSON(418, status)
+}
+
+type SquirrelHandler struct {
+	data []Squirrel
+}
+
+func (h *SquirrelHandler) GetAll(c *gin.Context) {
+	c.JSON(200, h.data)
+}
+
+func (h *SquirrelHandler) GetByID(c *gin.Context) {
+	id := c.Param("id")
+	for _, s := range h.data {
+		if s.ID == id {
+			c.JSON(200, s)
+			return
+		}
+	}
+	c.JSON(404, nil)
+}
+
+func NewSquirrelHandler(data []Squirrel) *SquirrelHandler {
+	return &SquirrelHandler{
+		data: data,
+	}
+}
+
+func loadSquirrelData() ([]Squirrel, error) {
+
+	fileContents, err := os.ReadFile("../../static/data.json")
+	if err != nil {
+		return nil, err
+	}
+
+	squirrels := []Squirrel{}
+	err = json.Unmarshal(fileContents, &squirrels)
+	if err != nil {
+		return nil, err
+	}
+
+	return squirrels, nil
+}
+
+func main() {
+	data, err := loadSquirrelData()
+	if err != nil {
+		panic(err)
+	}
+	squirrelHandler := NewSquirrelHandler(data)
+
+	r := gin.Default()
+	r.GET("/", handleRoot)
+	r.GET("/squirrels", squirrelHandler.GetAll)
+	r.GET("/squirrels/:id", squirrelHandler.GetByID)
+
+	r.Run("localhost:4321")
+}

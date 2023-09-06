@@ -21,8 +21,8 @@ type coordinates struct {
 	Lng float64
 }
 
-type SquirrelSighting struct {
-	SquirrelID             string   `json:"Squirrel_ID"`
+type Squirrel struct {
+	ID                     string   `json:"ID"`
 	FurColor               furColor `json:"Fur_Color"`
 	Park                   string
 	InteractionsWithHumans string `json:"Interactions_With_Humans"`
@@ -41,13 +41,13 @@ func handleSquirrels(c *gin.Context) {
 		panic(err)
 	}
 
-	sightings := []SquirrelSighting{}
-	err = json.Unmarshal(fileContents, &sightings)
+	squirrels := []Squirrel{}
+	err = json.Unmarshal(fileContents, &squirrels)
 	if err != nil {
 		panic(err)
 	}
 
-	c.JSON(200, sightings)
+	c.JSON(200, squirrels)
 }
 
 func main() {
