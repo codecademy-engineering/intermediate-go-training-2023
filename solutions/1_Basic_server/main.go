@@ -26,5 +26,5 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/", http.HandlerFunc(handleRoot))
 
-	http.ListenAndServe("localhost:3000", mux)
+	http.ListenAndServe("localhost:4321", mux)
 }

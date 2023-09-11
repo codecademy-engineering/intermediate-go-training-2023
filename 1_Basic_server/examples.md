@@ -58,12 +58,6 @@ if err != nil {
 }
 ```
 
-# Creating a Mux (let's be honest, it's a Router)
-
-```go
-mux := http.NewServeMux()
-```
-
 # Creating a route handler func
 
 ```go
@@ -83,6 +77,12 @@ w.WriteHeader(500) // w is an http.ResponseWriter
 ```go
 // w is an http.ResponseWriter
 w.Header().Set("Content-Type", "application/json")
+```
+
+# Creating a Mux (let's be honest, it's a Router)
+
+```go
+mux := http.NewServeMux()
 ```
 
 # Attaching the handler to the mux
