@@ -6,12 +6,15 @@ rawBytes, err := os.ReadFile("./path/to/file.whatever")
 
 # Unmarshalling JSON (slice of bytes in JSON -> go struct)
 
-Note: fields MUST be uppercased for the unmarshalling
+Fields MUST be uppercased for the unmarshalling, but fields can have json aliases
+when converting to/from structs if you want to have lowercase names (or any other names) in JSON.
 
-TODO: aliasing vs default
+```json
+{"numberField":1, "booleanField":false}
+```
 
 ```go
-rawData := []bytes{`{"numberField":1, "booleanField":false}`}
+rawData := // json above as a slice of bytes (e.g. read from a json file or an http response)
 
 type SomeStruct struct {
 	AliasOne int `json:"numberField"`
@@ -22,8 +25,8 @@ targetInstance := SomeStruct{}
 finalStruct, err := json.Unmarshal(rawData, &targetInstance)
 ```
 
-Structs can be nested
-and fields can have json aliases when converting to/from structs
+Structs can be nested. If your json data has a nested structure, you might want to
+unmarshall it into a struct that also uses nesting.
 
 ```go
 type author struct {

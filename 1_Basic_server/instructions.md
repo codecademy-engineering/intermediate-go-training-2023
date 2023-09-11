@@ -1,3 +1,6 @@
+You've contracted for a secret assignment. Before we reveal what it is, you'll need
+to demonstrate your golang chops.
+
 # Your assignment (should you choose to accept it)
 
 Create a main.go file at the root of this repository.
