@@ -1,3 +1,9 @@
+# Creating a package
+Your main.go file should always use a package called "main"
+```go
+package myPackage
+```
+
 # Creating a struct
 
 ```go
