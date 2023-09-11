@@ -10,17 +10,20 @@ This could be achieved with a handler STRUCT rather than a standalone handler fu
 
 # Your mission (should you choose to accept it)
 
-1. Refactor the logic that unmarshalls the squirrel intel contained within the `data.json` file into a stand alone func. This func should be called first in your main func and panic if the data can't be read.
+1. Create a SquirrelHandler struct with a field to keep a slice of all the squirrels.
 
-2. Write a factory func that takes in the successfully unmarshalled data and uses it to initialize a `SquirrelHandler` struct.
+2. Add a method called `GetAll` which takes the gin context as a parameter and accesses the
+squirrel data housed in the struct to return the same JSON response with all squirrels as before.
 
-This handler struct should have a method called `GetAll` which accesses the in-memory squirrel data housed in the struct in order to return the same JSON response as the original gin handler func you wrote previously.
+3. Add another method to the SquirrelHandler struct called `GetByID` that that also takes
+in the gin context as a parameter, and read an "id" from the gin context. This method
+should find the squirrel with the matching id and include it in a 200 response. If no matching squirrel is
+found, a `nil` should be given with a 404 response.
 
-3. Replace your original handler func on the `/squirrels` route with a call to your new handler struct method instead.
+4. Create a factory func that reads and unmarshals the squirrel data and creates a new instance
+of the SquirrelHandler struct containing the slice of Squirrels. This factory should panic
+if the data can't be read or unmarshalled.
 
-4. Add another method to the SquirrelHandler struct that will read an "id" parameter.
+5. Call the factory func from main() to create a SquirrelHandler instance.
 
-- Range through each squirrel in the data set and return the squirrel with matching ID if found.
-- Return a 404 nil result if no matching squirrel is found.
-
-5. Register this new handler method with the Gin router so it calls this method when going to "/squirrels/:id".
+6. Register both handler methods so that `GetAll` handles `/squirrels` and `GetByID` handles `/squirrels/:id`.

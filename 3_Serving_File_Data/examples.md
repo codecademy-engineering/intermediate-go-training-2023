@@ -26,7 +26,7 @@ finalStruct, err := json.Unmarshal(rawData, &targetInstance)
 ```
 
 Structs can be nested. If your json data has a nested structure, you might want to
-unmarshall it into a struct that also uses nesting.
+unmarshal it into a struct that also uses nesting.
 
 ```go
 type author struct {

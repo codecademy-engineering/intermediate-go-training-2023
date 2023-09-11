@@ -21,6 +21,7 @@ func (s *StructWithAbilities) GetData() []int {
 Common in golang to initialize a new instance of some struct that also has methods on it.
 
 By convention, begin the function name with `New` or `new` then the name of the struct.
+Typically this goes directly beneath the struct definition and above any struct methods.
 
 Often times this is used to initialize the entity with some starting values that will then be utilized by the methods called on the returned struct instance.
 

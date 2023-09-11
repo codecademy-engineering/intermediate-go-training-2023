@@ -8,7 +8,7 @@ import (
 )
 
 type StatusResponse struct {
-	Status string `json:"status"`
+	Status string
 }
 
 type furColor struct {
@@ -30,51 +30,54 @@ type Squirrel struct {
 	Coorditantes           coordinates
 }
 
-func handleRoot(c *gin.Context) {
-	status := StatusResponse{Status: "I'm a teapot 🫖"}
-	c.JSON(418, status)
-}
-
 type SquirrelHandler struct {
-	data []Squirrel
+	squirrels []Squirrel
 }
 
-func (h *SquirrelHandler) GetAll(c *gin.Context) {
-	c.JSON(200, h.data)
-}
-
-func NewSquirrelHandler(data []Squirrel) *SquirrelHandler {
-	return &SquirrelHandler{
-		data: data,
-	}
-}
-
-func loadSquirrelData() ([]Squirrel, error) {
-
+func NewSquirrelHanlder() *SquirrelHandler {
 	fileContents, err := os.ReadFile("../../static/data.json")
 	if err != nil {
-		return nil, err
+		panic(err)
 	}
 
 	squirrels := []Squirrel{}
 	err = json.Unmarshal(fileContents, &squirrels)
 	if err != nil {
-		return nil, err
+		panic(err)
 	}
 
-	return squirrels, nil
+	return &SquirrelHandler{
+		squirrels: squirrels,
+	}
+}
+
+func (sh *SquirrelHandler) GetAll(c *gin.Context) {
+	c.JSON(200, sh.squirrels)
+}
+
+func (sh *SquirrelHandler) GetByID(c *gin.Context) {
+	id := c.Param("id")
+	for _, s := range sh.squirrels {
+		if id == s.ID {
+			c.JSON(200, s)
+			return
+		}
+	}
+	c.JSON(404, nil)
+}
+
+func handleRoot(c *gin.Context) {
+	status := StatusResponse{Status: "I'm a teapot 🫖"}
+	c.JSON(418, status)
 }
 
 func main() {
-	data, err := loadSquirrelData()
-	if err != nil {
-		panic(err)
-	}
-	squirrelHandler := NewSquirrelHandler(data)
+	sh := NewSquirrelHanlder()
 
 	r := gin.Default()
 	r.GET("/", handleRoot)
-	r.GET("/squirrels", squirrelHandler.GetAll)
+	r.GET("/squirrels", sh.GetAll)
+	r.GET("/squirrels/:id", sh.GetByID)
 
 	r.Run("localhost:4321")
 }
