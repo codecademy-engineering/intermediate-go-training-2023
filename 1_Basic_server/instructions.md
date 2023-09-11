@@ -12,7 +12,10 @@ a key of "Status" (note the capital 'S' letter), a value of "I'm a teapot", and 
 ```go
 // declare a package
 
-// import dependencies
+import (
+	"encoding/json"
+	"net/http"
+)
 
 // define a struct
 
