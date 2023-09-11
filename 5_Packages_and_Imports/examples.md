@@ -10,7 +10,8 @@ type MyExportedStruct struct {}
 func MyExportedFunc() {}
 
 // Structs and functions starting with a lowercase letter can only be
-// accessed internally within the package where they are defined.
+// accessed internally within the package where they are defined, but
+// this can be from any file within the same package.
 type myPrivateStruct struct {}
 
 func myPrivateFunc() {}
