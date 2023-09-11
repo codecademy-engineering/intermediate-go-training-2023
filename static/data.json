@@ -1,12 +1,12 @@
 [
   {
     "ID": "A-01-10",
-    "Fur_Color": {
+    "FurColor": {
       "Primary": "Gray",
       "Highlights": "White"
     },
     "Park": "Fort Tryon Park",
-    "Interactions_With_Humans": "Indifferent",
+    "InteractionsWithHumans": "Indifferent",
     "Activities": ["Eating", "Digging"],
     "Coordinates": {
       "Lat": 40.859636,
@@ -15,12 +15,12 @@
   },
   {
     "ID": "A-02-08",
-    "Fur_Color": {
+    "FurColor": {
       "Primary": "Gray",
       "Highlights": "Cinnamon"
     },
     "Park": "J. Hood Wright Park",
-    "Interactions_With_Humans": "Indifferent",
+    "InteractionsWithHumans": "Indifferent",
     "Activities": ["Foraging", "Nesting/gathering leaves"],
     "Coordinates": {
       "Lat": 40.859636,
@@ -29,12 +29,12 @@
   },
   {
     "ID": "A-04-05",
-    "Fur_Color": {
+    "FurColor": {
       "Primary": "Gray",
       "Highlights": "White"
     },
     "Park": "St. Nicholas Park",
-    "Interactions_With_Humans": "Indifferent",
+    "InteractionsWithHumans": "Indifferent",
     "Activities": ["Climbing", "Eating"],
     "Coordinates": {
       "Lat": 40.817569,
@@ -43,12 +43,12 @@
   },
   {
     "ID": "B-07-08",
-    "Fur_Color": {
+    "FurColor": {
       "Primary": "Gray",
       "Highlights": "Cinnamon"
     },
     "Park": "Madison Square Park",
-    "Interactions_With_Humans": "Indifferent",
+    "InteractionsWithHumans": "Indifferent",
     "Activities": ["Foraging"],
     "Coordinates": {
       "Lat": 40.742807,
@@ -57,12 +57,12 @@
   },
   {
     "ID": "D-22-02",
-    "Fur_Color": {
+    "FurColor": {
       "Primary": "Gray",
       "Highlights": "White"
     },
     "Park": "McCarren Park",
-    "Interactions_With_Humans": "Approaches",
+    "InteractionsWithHumans": "Approaches",
     "Activities": ["Eating"],
     "Coordinates": {
       "Lat": 40.721768,

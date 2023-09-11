@@ -8,7 +8,7 @@ import (
 )
 
 type StatusResponse struct {
-	Status string `json:"status"`
+	Status string
 }
 
 type furColor struct {
@@ -22,10 +22,10 @@ type coordinates struct {
 }
 
 type Squirrel struct {
-	ID                     string   `json:"ID"`
-	FurColor               furColor `json:"Fur_Color"`
+	ID                     string
+	FurColor               furColor
 	Park                   string
-	InteractionsWithHumans string `json:"Interactions_With_Humans"`
+	InteractionsWithHumans string
 	Activities             []string
 	Coorditantes           coordinates
 }
