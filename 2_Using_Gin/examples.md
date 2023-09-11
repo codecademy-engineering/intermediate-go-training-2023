@@ -1,24 +1,4 @@
-# Go mod file
-
-Think of this like `package.json`.
-
-Initializing a new go mod for your project is done with the `go mod init` command.
-Run this at the root level of your repo:
-
-```bash
-go mod init github.com/codecademy-engineering/intermediate-go-training-2023
-```
-
-# Installing 3rd party dependencies
-
-Adding a dependency to your project is done via the terminal.
-Run the following at the root of your project.
-
-```bash
-go get -u github.com/gin-gonic/gin
-```
-
-## Gin
+# Gin
 
 One of the most popular web frameworks for golang. We use it often in repos at Codecademy (it even ships with the service cookie-cutter for golang).
 
@@ -51,4 +31,24 @@ Starting up the server on a specified port:
 
 ```go
 r.Run("localhost:4321")
+```
+
+# Go mod file
+
+Think of this like `package.json`.
+
+Initializing a new go mod for your project is done with the `go mod init` command.
+Run this at the root level of your repo:
+
+```bash
+go mod init github.com/codecademy-engineering/intermediate-go-training-2023
+```
+
+# Installing 3rd party dependencies
+
+Adding a dependency to your project is done via the terminal.
+Run the following at the root of your project.
+
+```bash
+go get github.com/gin-gonic/gin
 ```
