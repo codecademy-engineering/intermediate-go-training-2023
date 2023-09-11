@@ -17,12 +17,12 @@ import (
 	"net/http"
 )
 
-// define a struct
+// define a struct for your JSON response
 
 func handleRoot(w http.ResponseWriter, r *http.Request) {
 	// create an instance of your struct
 
-	// unmarshall the struct instance into a string
+	// marshall the struct instance into JSON
 
 	// handle if err is not nil (using panic() is fine)
 

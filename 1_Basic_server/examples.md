@@ -1,5 +1,7 @@
 # Creating a package
+
 Your main.go file should always use a package called "main"
+
 ```go
 package myPackage
 ```
@@ -57,8 +59,10 @@ panic("Something has gone very wrong...halt all the things")
 
 # JSON Marshalling (struct instance -> JSON string)
 
+Equivalent of javascript JSON.stringify() except it is a slice of bytes (think raw binary data)
+
 ```go
-jsonString, err := json.Marshal(myInstance)
+rawJSONBytes, err := json.Marshal(myInstance)
 if err != nil {
   // handle the error
 }
@@ -68,6 +72,7 @@ if err != nil {
 
 ```go
 func handleRoute(w http.ResponseWriter, r *http.Request) {
+	// writing the response body as slice of bytes
 	w.Write([]byte("Hello client! From, server"))
 }
 ```
@@ -100,5 +105,5 @@ mux.Handle("/sayHello", http.HandlerFunc(handleRoute))
 # Starting the server
 
 ```go
-http.ListenAndServe("localhost:3000", mux)
+http.ListenAndServe("localhost:4321", mux)
 ```
