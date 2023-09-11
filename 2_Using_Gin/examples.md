@@ -12,6 +12,7 @@ Handler funcs for Gin look slightly different.
 They take a pointer to gin 'Context' which is a simplified way of using the ResponseWriter and request pointer from standard lib.
 
 Gin context includes convenient helpers such as `c.JSON` which makes rendering JSON responses very simple.
+It will automatically set a json content-type header.
 
 ```go
 func myHandler(c *gin.Context) {
