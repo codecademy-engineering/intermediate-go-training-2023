@@ -12,7 +12,7 @@ type SquirrelHandler struct {
 	squirrels []models.Squirrel
 }
 
-func NewSquirrelHanlder() *SquirrelHandler {
+func NewSquirrelHandler() *SquirrelHandler {
 	fileContents, err := os.ReadFile("../../static/data.json")
 	if err != nil {
 		panic(err)
