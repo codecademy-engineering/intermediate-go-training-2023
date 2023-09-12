@@ -3,19 +3,20 @@ package handlers
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"os"
 
+	"github.com/codecademy-engineering/intermediate-go-training-2023/alert"
 	"github.com/codecademy-engineering/intermediate-go-training-2023/models"
-	"github.com/codecademy-engineering/intermediate-go-training-2023/sos"
 	"github.com/gin-gonic/gin"
 )
 
 type SquirrelHandler struct {
 	squirrels []models.Squirrel
-	sosBeacon sos.Beacon
+	beacon    alert.Beacon
 }
 
-func NewSquirrelHandler(sosBeacon sos.Beacon) *SquirrelHandler {
+func NewSquirrelHandler(beacon alert.Beacon) *SquirrelHandler {
 	fileContents, err := os.ReadFile("../../static/data.json")
 	if err != nil {
 		panic(err)
@@ -29,7 +30,7 @@ func NewSquirrelHandler(sosBeacon sos.Beacon) *SquirrelHandler {
 
 	return &SquirrelHandler{
 		squirrels: squirrels,
-		sosBeacon: sosBeacon,
+		beacon:    beacon,
 	}
 }
 
@@ -56,16 +57,16 @@ func (sh *SquirrelHandler) lookupByID(id string) (*models.Squirrel, error) {
 	return nil, errors.New("no squirrel found matching provided ID")
 }
 
-func (sh *SquirrelHandler) SOS(c *gin.Context) {
+func (sh *SquirrelHandler) Alert(c *gin.Context) {
 	id := c.Param("id")
 	squirrel, err := sh.lookupByID(id)
 	if err != nil {
-		c.JSON(404, err)
+		c.JSON(404, gin.H{"message": fmt.Sprintf("Squirrel %s could not be found", id)})
 		return
 	}
-	err = sh.sosBeacon.AlertAllAgents(squirrel)
+	err = sh.beacon.AlertAllAgents(squirrel)
 	if err != nil {
-		c.JSON(500, err)
+		c.JSON(500, gin.H{"message": "The beacon is not operational"})
 		return
 	}
 	c.JSON(200, gin.H{"message": "Alerted all agents of an attack!"})

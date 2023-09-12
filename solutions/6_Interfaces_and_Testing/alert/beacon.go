@@ -1,4 +1,4 @@
-package sos
+package alert
 
 import (
 	"github.com/codecademy-engineering/intermediate-go-training-2023/models"
