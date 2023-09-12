@@ -34,6 +34,6 @@ func (s *myInterfaceImpl) SomePublicMethod(argName string) error {
 
 // so when calling the func expecting an interface, we can give it the implementation
 
-someFunc(myInterfaceImpl{})
-
+myImpl := myInterfaceImpl{}
+someFunc(myImpl)
 ```
