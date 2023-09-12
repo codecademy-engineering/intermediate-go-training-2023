@@ -37,3 +37,21 @@ func (s *myInterfaceImpl) SomePublicMethod(argName string) error {
 myImpl := myInterfaceImpl{}
 someFunc(myImpl)
 ```
+
+# Nil pointers
+When your return type on a func is a pointer, a nil pointer can be used
+as an empty result
+```go
+type Thing struct {}
+
+func findAThing(id string) (*Thing, error) {
+	// some logic to look up a thing by id
+	if (thingFound) {
+		return *thing, nil
+	}
+	return nil, fmt.Errorf("%s not found", id)
+}
+```
+Warning: Trying to dereference a nil pointer will cause the program to crash!
+For this reason, it's important to return an error so that code using
+your method will know not to dereference a nil pointer when it is returned.

@@ -11,8 +11,9 @@ be ready to connect the real beacon implementation as soon as it's ready.
 # Your mission (should you choose to accept it)
 
 1. Refactor lookup logic from the GetByID handler into a reusable private method
-that takes an id (string) and returns a pointer to a squirrel and an error if no
-squirrel matching the id is found.
+that takes an id (string) with return types of Squirrel pointer and error.
+- If a matching Squirrel is found, return a pointer to that Squirrel and a nil error.
+- Otherwise return a nil Squirrel pointer and an error.
 
 2. Create an alert package with a beacon interface. This interface should have
 an "AlertAllAgents" method that accepts a pointer to a squirrel and has a return
