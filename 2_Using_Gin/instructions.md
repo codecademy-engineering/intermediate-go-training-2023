@@ -1,7 +1,7 @@
 Ok, you've passed the first test! We would like to see you take this service
 to the next level before we reveal your assignment.
 
-Gin is a very common web framework using Golang. We would like to see you implement that here.
+Gin is a very common Golang web framework. We would like to see you implement that here.
 
 # Your assignment (should you choose to accept it)
 

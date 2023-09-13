@@ -1,4 +1,5 @@
-You've contracted for a secret assignment. Before we reveal what it is, you'll need
+Greetings.
+You've been contracted for a secret assignment. Before we reveal what it is, you'll need
 to demonstrate your golang chops.
 
 # Your assignment (should you choose to accept it)

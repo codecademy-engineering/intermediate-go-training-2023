@@ -10,11 +10,11 @@ Fields MUST be uppercased for the unmarshalling, but fields can have json aliase
 when converting to/from structs if you want to have lowercase names (or any other names) in JSON.
 
 ```json
-{"numberField":1, "booleanField":false}
+{ "numberField": 1, "booleanField": false }
 ```
 
 ```go
-rawData := // json above as a slice of bytes (e.g. read from a json file or an http response)
+var rawData []byte // image this is json above as a slice of bytes (e.g. read from a json file or an http response)
 
 type SomeStruct struct {
 	AliasOne int `json:"numberField"`

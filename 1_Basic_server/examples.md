@@ -2,6 +2,8 @@
 
 Your main.go file should always use a package called "main"
 
+Package declaration syntax:
+
 ```go
 package myPackage
 ```

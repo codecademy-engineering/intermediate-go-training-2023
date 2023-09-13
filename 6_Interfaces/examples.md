@@ -1,20 +1,21 @@
 # Interfaces
 
-Abstractions that define which methods (and signatures) an object should have.
+Abstractions that define method signatures & return types that some **unspecified** concrete struct will implement.
 
-Other code can then rely on the interface rather than a concrete struct.
-The rest of the code therefore doesn't know or care which concrete implementation it's working with.
+Interfaces are like "contracts". Wherever they are used in code, they promise that **something** will be there at runtime with the same methods and return types defined by that interface.
 
-ANY struct that has method signatures matching the interface are said to "satisfy the interface" and can be passed in its stead.
+This is helpful to modularize your code and swap implementations in/out without needing to refactor the code that relies on the interface.
+
+ANY struct that has AT LEAST ALL (possibly more!) matching method signatures & return types are said to "satisfy the interface".
 
 ```go
 type MyInterface interface {
 	// note uppercase S
-	SomePublicMethod(argName string) error
+	SomePublicMethod(specificArgName string) error
 	// lowercase s
-	somePrivateMethod(argName string) (string, error)
+	somePrivateMethod(specificArgName string) (string, error)
 
-	MethodWithAnonArgName(string, int) error
+	MethodWithAnonArgNames(string, int) error
 }
 
 // using an interface is much like the struct
@@ -28,7 +29,7 @@ type myInterfaceImpl struct {
 }
 
 // this method matches the interface definition above
-func (s *myInterfaceImpl) SomePublicMethod(argName string) error {
+func (s *myInterfaceImpl) SomePublicMethod(specificArgName string) error {
 	//...impl logic
 }
 
@@ -39,8 +40,10 @@ someFunc(myImpl)
 ```
 
 # Nil pointers
+
 When your return type on a func is a pointer, a nil pointer can be used
 as an empty result
+
 ```go
 type Thing struct {}
 
@@ -52,6 +55,17 @@ func findAThing(id string) (*Thing, error) {
 	return nil, fmt.Errorf("%s not found", id)
 }
 ```
-Warning: Trying to dereference a nil pointer will cause the program to crash!
-For this reason, it's important to return an error so that code using
-your method will know not to dereference a nil pointer when it is returned.
+
+**_Warning:_** Trying to dereference a nil pointer will cause the program to crash!
+For this reason, it's important to return an error so that calling code can check it and avoid
+accidentally dereferencing a nil pointer!
+
+# Gin.H
+
+Another convenience offered by Gin.
+Use this instead of a map[string]interface{} when creating something to serialize to JSON.
+
+```go
+c.JSON(200, gin.H{"a":1, "b":"two", "c":false})
+```
+

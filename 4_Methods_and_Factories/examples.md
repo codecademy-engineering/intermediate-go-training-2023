@@ -14,7 +14,14 @@ type StructWithAbilities struct {
 func (s *StructWithAbilities) GetData() []int {
 	return s.data
 }
+
+instance := StructWithAbilities{data: []int{1, 2}}
+
+res := instance.GetData()
 ```
+
+The alternative to a 'pointer' receiver is called a 'value' receiver, which receives a COPY of the data in the struct rather than the exact instance data already allocated in memory.
+**(Don't worry about these for now.)**
 
 # Factory Pattern
 
@@ -36,7 +43,10 @@ func (s *SomeStruct) CoolMethodHere() (string, boolean) {
 }
 
 func NewSomeStruct(a string, b boolean) *SomeStruct {
-	// most common to return a ptr to the instance
+	// OPTIONALLY, call some other code,
+	// include more complicated setup, etc.
+
+	// return a ptr to the instance (most common)
 	return &SomeStruct{
 		FieldA: a,
 		FieldB: b,
@@ -55,7 +65,6 @@ r.GET("/somepath/:myparam", SomeStruct.MyHandlerMethod)
 ```go
 func (h *SomeStruct) MyHandlerMethod(c *gin.Context) {
 	myParam := c.Param("myparam")
-	// some logic to use the param
-	c.JSON(200, myResult)
+	// ...some logic to use the param
 }
 ```
