@@ -9,7 +9,7 @@ This workshop is built around **6 challenges** designed to be completed over ~2 
 The main topics covered:
 
 - Basic HTTP handlers and routing with std lib
-- Gin webframework
+- Gin web framework
 - Reading and parsing files
 - Struct methods and the factory pattern
 - Packages and imports
@@ -30,7 +30,7 @@ By the end, your efforts will have culminated in a single, workable application.
 
 Solutions to each challenge can be found under the `solutions` dir.
 
-We recommend you create a new local branch of this repo where you can write your code.
+We recommend you create a new local branch of this repo to write your code.
 
 See challenge #1 to get started!
 
