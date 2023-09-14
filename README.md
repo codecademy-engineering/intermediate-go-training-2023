@@ -1,12 +1,12 @@
 # Overview
 
-👋 Welcome to the official repo of the Codecademy Intermediate Go Dev Workshop 2023!
+👋 Welcome to the official repo of the **Codecademy Intermediate Go Dev Workshop 2023**!
 
-We assume you are familiar with the basic language syntax, datatypes, etc.
+We assume you are familiar with golang's basic language syntax and data types.
 
-There are 6 challenges in total designed to be completed over ~2 hours.
+This workshop is built around **6 challenges** designed to be completed over ~2 hours.
 
-The main topics covered include:
+The main topics covered:
 
 - Basic HTTP handlers and routing with std lib
 - Gin webframework
@@ -29,6 +29,8 @@ Challenges are designed to be completed iteratively so that each one you code is
 By the end, your efforts will have culminated in a single, workable application.
 
 Solutions to each challenge can be found under the `solutions` dir.
+
+We recommend you create a new local branch of this repo where you can write your code.
 
 See challenge #1 to get started!
 
