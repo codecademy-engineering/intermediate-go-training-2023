@@ -7,14 +7,14 @@ import (
 )
 
 func main() {
-	mockBeacon := alert.NewMockBeacon(nil)
+	mockBeacon := alert.NewMockBeacon()
 	sh := handlers.NewSquirrelHandler(mockBeacon)
 
 	r := gin.Default()
 	r.GET("/", handlers.HandleRoot)
 	r.GET("/squirrels", sh.GetAll)
 	r.GET("/squirrels/:id", sh.GetById)
-	r.POST("/squirrel_alert/:id", sh.Alert)
+	r.POST("/squirrels/:id/threat", sh.ThreatAlert)
 
 	r.Run("localhost:4321")
 }

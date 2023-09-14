@@ -8,16 +8,12 @@ type Beacon interface {
 	AlertAllAgents(sq *models.Squirrel) error
 }
 
-type mockBeacon struct {
-	err error
-}
+type mockBeacon struct{}
 
-func NewMockBeacon(err error) *mockBeacon {
-	return &mockBeacon{
-		err: err,
-	}
+func NewMockBeacon() *mockBeacon {
+	return &mockBeacon{}
 }
 
 func (m *mockBeacon) AlertAllAgents(sq *models.Squirrel) error {
-	return m.err
+	return nil
 }

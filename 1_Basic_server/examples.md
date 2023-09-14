@@ -109,3 +109,11 @@ mux.Handle("/sayHello", http.HandlerFunc(handleRoute))
 ```go
 http.ListenAndServe("localhost:4321", mux)
 ```
+
+# Running your go program
+
+From inside the project root dir execute:
+
+```go
+go run main.go
+```

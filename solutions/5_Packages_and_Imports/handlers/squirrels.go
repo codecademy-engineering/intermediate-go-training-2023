@@ -41,5 +41,5 @@ func (h *SquirrelHandler) GetById(c *gin.Context) {
 			return
 		}
 	}
-	c.JSON(404, nil)
+	c.JSON(404, gin.H{"message": "squirrel not found"})
 }

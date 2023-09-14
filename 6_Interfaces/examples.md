@@ -60,12 +60,25 @@ func findAThing(id string) (*Thing, error) {
 For this reason, it's important to return an error so that calling code can check it and avoid
 accidentally dereferencing a nil pointer!
 
-# Gin.H
-
-Another convenience offered by Gin.
-Use this instead of a map[string]interface{} when creating something to serialize to JSON.
+# Including errors as strings
 
 ```go
-c.JSON(200, gin.H{"a":1, "b":"two", "c":false})
+c.JSON(gin.H{"message": err.Error()})
+```
+
+# String interpolation
+
+## With other strings
+
+```go
+myVar := "world"
+finalString := fmt.Sprintf("hello %s", myVar)
+```
+
+## With errors
+
+```go
+// alternative to: fmt.Sprintf("error was: %s", err.Error())
+finalString := fmt.Sprintf("error was: %w", err)
 ```
 

@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -26,8 +25,6 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/", http.HandlerFunc(handleRoot))
-
-	fmt.Println("Started sever on port 4321")
 
 	http.ListenAndServe("localhost:4321", mux)
 }

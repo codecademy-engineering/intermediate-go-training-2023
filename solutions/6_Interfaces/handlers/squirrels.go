@@ -42,7 +42,7 @@ func (sh *SquirrelHandler) GetById(c *gin.Context) {
 	id := c.Param("id")
 	squirrel, err := sh.lookupByID(id)
 	if err != nil {
-		c.JSON(404, nil)
+		c.JSON(404, gin.H{"message": err.Error()})
 		return
 	}
 	c.JSON(200, squirrel)
@@ -54,20 +54,20 @@ func (sh *SquirrelHandler) lookupByID(id string) (*models.Squirrel, error) {
 			return &s, nil
 		}
 	}
-	return nil, errors.New("no squirrel found matching provided ID")
+	return nil, errors.New("squirrel not found")
 }
 
-func (sh *SquirrelHandler) Alert(c *gin.Context) {
+func (sh *SquirrelHandler) ThreatAlert(c *gin.Context) {
 	id := c.Param("id")
 	squirrel, err := sh.lookupByID(id)
 	if err != nil {
-		c.JSON(404, gin.H{"message": fmt.Sprintf("Squirrel %s could not be found", id)})
+		c.JSON(404, gin.H{"message": err.Error()})
 		return
 	}
 	err = sh.beacon.AlertAllAgents(squirrel)
 	if err != nil {
-		c.JSON(500, gin.H{"message": "The beacon is not operational"})
+		c.JSON(500, gin.H{"message": fmt.Sprintf("beacon failure: %w", err)})
 		return
 	}
-	c.JSON(200, gin.H{"message": "Alerted all agents of an attack!"})
+	c.JSON(200, gin.H{"message": fmt.Sprintf("Alerted all agents that squirrel %s is an imminent threat!", squirrel.ID)})
 }

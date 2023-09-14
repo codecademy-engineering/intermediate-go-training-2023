@@ -4,7 +4,7 @@
 
 We assume you are familiar with the basic language syntax, datatypes, etc.
 
-There are 6 lessons in total designed to be completed over ~2 hours.
+There are 6 challenges in total designed to be completed over ~2 hours.
 
 The main topics covered include:
 
@@ -17,18 +17,18 @@ The main topics covered include:
 
 # Structure
 
-Lessons are chronologically ordered in the numbered dirs.
+Challenges are chronologically ordered in the numbered dirs.
 
-Each lesson dir contains an:
+Each challenge dir contains an:
 
-- `examples.md` to introduce relevant concepts
-- `instructions.md` with your challenge
+- `examples.md` to introduce relevant tools / concepts
+- `instructions.md` to detail what you should do for the challenge
 
-Challenges are designed to be completed iteratively each one expanding on code you've written in previous steps.
+Challenges are designed to be completed iteratively so that each one you code is built upon what you had created in previous steps.
 
-**By the end, your efforts will have culminated in a single, workable application!**
+By the end, your efforts will have culminated in a single, workable application.
 
-Solutions to each lesson can be found under the `solutions` dir.
+Solutions to each challenge can be found under the `solutions` dir.
 
-See lesson #1 to get started!
+See challenge #1 to get started!
 

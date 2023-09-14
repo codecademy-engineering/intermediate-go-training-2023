@@ -10,34 +10,35 @@ be ready to connect the real beacon implementation as soon as it's ready.
 
 # Your mission (should you choose to accept it)
 
-1. Refactor lookup logic from the GetByID handler into a reusable **private** method
+1. Begin by extracting the lookup logic portion of the GetByID handler into a reusable **private** method
    that takes an id (string) with return types of Squirrel pointer and error.
 
 - If a matching Squirrel is found, return a pointer to that Squirrel and a nil error.
-- Otherwise return a nil Squirrel pointer and an error.
+- Otherwise return a nil Squirrel pointer and an error with the text "squirrel not found"
 
-2. Create an alert package with a beacon interface. This interface should have
+The GetByID handler should check the error value returned by the extracted lookup logic and include it as the JSON message text on a 404 scenario.
+
+2. Create an alert package with a Beacon interface. This interface should have
    an "AlertAllAgents" method that accepts a pointer to a squirrel and has a return
    type of error.
 
-3. Write a mock implementation of the beacon interface within the same alert
-   package. The AlertAllAgents method can always return a nil error, simulating
+3. Write a mock implementation of the Beacon interface within the same alert
+   package. The AlertAllAgents method should always return a nil error, simulating
    a sucessful alert.
 
-4. Refactor the SquirrelHandler struct so that contains a field that is a
-   beacon interface. Change the factory func to take a beacon instance and attach
+4. Add a new beacon field of type Beacon interface to the SquirrelHandler struct. Change the factory func to take a beacon instance and attach
    it to the SquirrelHandler struct when initializing.
 
 5. In your main func, create an instance of the mock beacon, and pass it into the
    SquirrelHandler factory.
 
-6. Create an Alert handler method on the SquirrelHandler struct, for
-   "/squirrel_alert/:id". This handler should use the same lookup method to find a
+6. Create an ThreatAlert handler method on the SquirrelHandler struct, for
+   "/squirrels/:id/threat". This handler should use the same extracted lookup method used by the GetByID handler to find a
    squirrel for the provided id, and then call the "AlertAllAgents" method on the
    beacon interface with that squirrel pointer.
 
-7. Return the following http responses:
+This handler method should return the following http responses:
 
-- 404 and a "squirrel not found" message, if no squirrel is found matching the id
-- 500 and an error message, if the beacon AlertAllAgents method returns an error
-- 200 and a success messsage, if agents were successfully alerted.
+- 404 and a the lookup logic error message, if no squirrel is found matching the id
+- 500 with a message value of "beacon failure: <error text>" with string interpolation of the actual error if the beacon AlertAllAgents method returned one
+- 200 and a success messsage of "Alerted all agents that squirrel <id> is an imminent threat!" with string interpolation if agents were successfully alerted.

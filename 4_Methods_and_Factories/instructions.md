@@ -13,11 +13,11 @@ This could be achieved with a handler STRUCT with handler METHODS rather than a 
 1. Create a SquirrelHandler struct with a field to keep a slice of all the squirrels.
 
 2. Add a method on the struct called `GetAll` which takes the gin context as an arg. This method should accesses the
-   squirrel data housed in the struct and return the same JSON response as before with the list of all squirrels.
+   squirrel data housed in the struct instance and return the same JSON response as before with the list of all squirrels.
 
 3. Add another method to the SquirrelHandler struct called `GetByID` that reads an "id" from the gin context. This method
    should find the squirrel with the matching id and include it in a 200 response. If no matching squirrel is
-   found, a `nil` should be given with a 404 response.
+   found, a `{"message": "squirrel not found"}` response should be given with a 404 status code.
 
 4. Create a factory func that reads and unmarshals the squirrel data and creates a new instance
    of the SquirrelHandler struct containing the slice of Squirrels. This factory should panic

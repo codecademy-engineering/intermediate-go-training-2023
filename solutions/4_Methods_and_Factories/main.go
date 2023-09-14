@@ -7,10 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type StatusResponse struct {
-	Status string
-}
-
 type furColor struct {
 	Primary    string
 	Highlights string
@@ -63,16 +59,15 @@ func (sh *SquirrelHandler) GetByID(c *gin.Context) {
 			return
 		}
 	}
-	c.JSON(404, nil)
+	c.JSON(404, gin.H{"message": "squirrel not found"})
 }
 
 func handleRoot(c *gin.Context) {
-	status := StatusResponse{Status: "I'm a teapot 🫖"}
-	c.JSON(418, status)
+	c.JSON(418, gin.H{"status": "I'm a teapot 🫖"})
 }
 
 func main() {
-	sh := NewSquirrelHanlder()
+	sh := NewSquirrelHandler()
 
 	r := gin.Default()
 	r.GET("/", handleRoot)
