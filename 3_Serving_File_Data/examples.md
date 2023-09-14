@@ -22,7 +22,7 @@ type SomeStruct struct {
 }
 
 targetInstance := SomeStruct{}
-finalStruct, err := json.Unmarshal(rawData, &targetInstance)
+err := json.Unmarshal(rawData, &targetInstance)
 ```
 
 Structs can be nested. If your json data has a nested structure, you might want to
